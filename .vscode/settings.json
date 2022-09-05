@@ -4,5 +4,7 @@
         "initializer_list": "cpp",
         "valarray": "cpp",
         "type_traits": "cpp"
-    }
+    },
+    "makefile.compileCommandsPath": "D:\\project\\codeforces\\.vscode\\compile_commands.json",
+    "sonarlint.pathToCompileCommands": "D:\\project\\codeforces\\.vscode\\compile_commands.json"
 }
