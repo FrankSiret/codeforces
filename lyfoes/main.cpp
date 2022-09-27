@@ -273,7 +273,8 @@ int main()
     }
 
     for(auto [k, v] : mp) {
-        cout << k << ' ' << v << endl;
+        // cout << k << ' ' << v << endl;
+        assert(v == m);
     }
 
     // vector<string> sol;
@@ -282,6 +283,7 @@ int main()
     solveBFS(n, m, board);
 
     cout << "SOLUTION WITH " << SOLUTION.size() << " STEP" << endl;
+    // dbg(SOLUTION);
     for(string step: SOLUTION) {
         cout << step << endl;
     }
