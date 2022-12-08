@@ -1,2 +1,4 @@
 output
 nutshell
+node_modules
+headers.js
