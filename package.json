@@ -1,0 +1,24 @@
+{
+  "type": "module",
+  "dependencies": {
+    "node-fetch": "^3.3.0"
+  },
+  "name": "codeforces",
+  "version": "1.0.0",
+  "main": "adventofcode.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FrankSiret/codeforces.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FrankSiret/codeforces/issues"
+  },
+  "homepage": "https://github.com/FrankSiret/codeforces#readme",
+  "description": ""
+}
