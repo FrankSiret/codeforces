@@ -295,70 +295,53 @@ const q82 = async () => {
       console.log('DAY 8.2')
       const l = data.split('\n');
       const v = [];
-      const mark = [];
       const score = [];
       for (let _i=0; _i < l.length-1; _i++) {
         let i = l[_i];
         const vi = i.split('');
         v.push(vi);
-        // console.log(vi)
-        mark.push(Array(vi.length).fill(false))
+        console.log(vi)
         score.push(Array(vi.length).fill(0))
       }
       const n = v.length;
       const m = v[0].length;
       let sol = 0;
 
-      for(let i = 0; i < n; i++) {
-        mark[i][0] = mark[0][i] = mark[i][m-1] = mark[n-1][i] = true;
-      }
-
       for(let i = 1; i < n-1; i++) {
-        let p = v[i][0];
         for(let j = 1; j < m-1; j++) {
-          if(v[i][j] > p) {
-            mark[i][j] = true;
-            p = v[i][j];
-          }
-        }
-      }
+          let N = 0, S = 0, E = 0, W = 0;
 
-      for(let j = 1; j < m-1; j++) {
-        let p = v[0][j];
-        for(let i = 1; i < n-1; i++) {
-          if(v[i][j] > p) {
-            mark[i][j] = true;
-            p = v[i][j];
+          for(let k = i+1; k < n; k++) {
+            if(v[k][j] < v[i][j]) E++;
+            else if(v[k][j] >= v[i][j]) {
+              E++;
+              break;
+            }
           }
-        }
-      }
+          for(let k = i-1; k >= 0; k--) {
+            if(v[k][j] < v[i][j]) W++;
+            else if(v[k][j] >= v[i][j]) {
+              W++;
+              break;
+            }
+          }
+          for(let k = j+1; k < m; k++) {
+            if(v[i][k] < v[i][j]) S++;
+            else if(v[i][k] >= v[i][j]) {
+              S++;
+              break;
+            }
+          }
+          for(let k = j-1; k >= 0; k--) {
+            if(v[i][k] < v[i][j]) N++;
+            else if(v[i][k] >= v[i][j]) {
+              N++;
+              break;
+            }
+          }
 
-      for(let i = 1; i < n-1; i++) {
-        let p = v[i][m-1];
-        for(let j = m-2; j > 0; j--) {
-          if(v[i][j] > p) {
-            mark[i][j] = true;
-            p = v[i][j];
-          }
-        }
-      }
-      
-      for(let j = 1; j < m-1; j++) {
-        let p = v[n-1][j];
-        for(let i = n-2; i > 0; i--) {
-          if(v[i][j] > p) {
-            mark[i][j] = true;
-            p = v[i][j];
-          }
-        }
-      }
-
-      
-      // console.log(mark);
-      
-      for(let i = 0; i < n; i++) {
-        for(let j = 0; j < m; j++) {
-          sol += mark[i][j] ? 1 : 0;
+          // console.log(N*S*E*W)
+          sol = Math.max(sol, N*S*E*W);
         }
       }
       
