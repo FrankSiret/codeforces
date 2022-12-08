@@ -287,6 +287,118 @@ const q8 = async () => {
     });
 }
 
+//day 5
+const q5 = async () => {
+  await fetch('https://adventofcode.com/2022/day/5/input', { headers: { cookie: COOKIE } })
+    .then(response => response.text())
+    .then(data => {
+      console.log('DAY 5')
+      const l = data.split('\n');
+      let sol = '';
+      const n = Math.floor(l[0].length / 4)+1
+      const v = Array(n).fill(null)
+      for(let ii=0; ii < n; ii++) v[ii] = [];
+      let _i;
+      for (_i=0; _i < l.length-1; _i++) {
+        let i = l[_i];
+        if(i.startsWith(' 1')) break;
+        const vi = i.split('');
+        // console.log(vi)
+        for(let j = 0; j < vi.length; j+=4) {
+          const cargo = vi[j+1];
+          console.log(j/4, cargo)
+          if(cargo != ' ')
+            v[Math.floor(j/4)].push(cargo)
+        }
+      }
+      for(let ii = 0; ii < n; ii++) {
+        v[ii].reverse();
+      }
+
+      const q = [];
+      for (_i+=2; _i < l.length-1; _i++) {
+        let i = l[_i];
+        const qq = i.split(' ');
+        q.push({move: +qq[1], from: +qq[3], to: +qq[5]});
+      }
+      
+      console.log(v)
+
+      for (const {move, from, to} of q) {
+        for(let k = 0; k < move; k++) {
+          v[to-1].push(v[from-1].pop())
+        }
+      }
+
+      console.log(v)
+
+      for(let ii = 0; ii < n; ii++) {
+        if(v[ii].length > 0)
+          sol += v[ii][v[ii].length - 1]
+      }
+
+      console.log(sol)
+    });
+}
+
+//day 5.2
+const q52 = async () => {
+  await fetch('https://adventofcode.com/2022/day/5/input', { headers: { cookie: COOKIE } })
+    .then(response => response.text())
+    .then(data => {
+      console.log('DAY 5.2')
+      const l = data.split('\n');
+      let sol = '';
+      const n = Math.floor(l[0].length / 4)+1
+      const v = Array(n).fill(null)
+      for(let ii=0; ii < n; ii++) v[ii] = [];
+      let _i;
+      for (_i=0; _i < l.length-1; _i++) {
+        let i = l[_i];
+        if(i.startsWith(' 1')) break;
+        const vi = i.split('');
+        // console.log(vi)
+        for(let j = 0; j < vi.length; j+=4) {
+          const cargo = vi[j+1];
+          console.log(j/4, cargo)
+          if(cargo != ' ')
+            v[Math.floor(j/4)].push(cargo)
+        }
+      }
+      for(let ii = 0; ii < n; ii++) {
+        v[ii].reverse();
+      }
+
+      const q = [];
+      for (_i+=2; _i < l.length-1; _i++) {
+        let i = l[_i];
+        const qq = i.split(' ');
+        q.push({move: +qq[1], from: +qq[3], to: +qq[5]});
+      }
+      
+      // console.log(v)
+
+      for (const {move, from, to} of q) {
+        const temp = []
+        for(let k = 0; k < move; k++) {
+          temp.push(v[from-1].pop())
+        }
+        v[to-1].push(...temp.reverse())
+      }
+
+      // console.log(v)
+
+      for(let ii = 0; ii < n; ii++) {
+        if(v[ii].length > 0)
+          sol += v[ii][v[ii].length - 1]
+      }
+
+      console.log(sol)
+    });
+}
+
+q52()
+
 //day 8.2
 const q82 = async () => {
   await fetch('https://adventofcode.com/2022/day/8/input', { headers: { cookie: COOKIE } })
@@ -348,5 +460,3 @@ const q82 = async () => {
       console.log(sol);
     });
 }
-
-q82()
