@@ -41,6 +41,16 @@ class Dog extends Animal {
     }
 }
 
+class SyncronizeBackupsException extends RuntimeException {
+    private static final long serialVersionUID = -1873121683185597465L;
+    public SyncronizeBackupsException(String message) {
+        super(message);
+    }
+    public SyncronizeBackupsException(String message, Throwable cause) {
+        super(message, cause);
+    }
+}
+
 class Main {
 
     // static final DateTimeFormatter DURATION_FORMATTER = new DateTimeFormatterBuilder()
@@ -91,42 +101,62 @@ class Main {
 
         // System.out.println(map("1.13:14:50.0901259"));
 
-        // try {
-        //     try {
-        //         String s = "null";
-        //         Boolean b = s.isEmpty();
-        //         Integer a = 4 / 0;
-        //     } catch (NullPointerException e) {
-        //         System.err.println("catch null pointer ex 1");
-        //         throw new Exception("error 1", e);
-        //     } 
-        //     catch (Exception e) {
-        //         System.err.println("catch ex 1.2");
-        //         // throw new Exception("error 1.2", e);
-        //     }
-        //     System.err.println("post");
+        boolean a1 = true;
+        boolean b1 = true;
+        boolean c1 = false;
+        boolean d1 = false;
 
-        // } catch (Exception e) {
-        //     System.err.println("catch 2");
-        // } finally {
-        //     System.err.println("finally");
-        // }
+        if((a1 && b1) && (c1 || d1)) {
+            System.out.println("TRUE");
+        }
+        else System.out.println("FALSE");
+
+        try {
+            try {
+                String s = "null";
+                Boolean b = s.isEmpty();
+                dd();
+                Integer a = 4 / 0;
+            } catch (NullPointerException e) {
+                System.err.println("catch null pointer ex 1");
+                throw new Exception("error 1", e);
+            } catch (Exception e) {
+                System.err.println("catch ex 1.2" + e.getMessage());
+                // throw new Exception("error 1.2", e);
+            }
+            System.err.println("post");
+
+        } catch (Exception e) {
+            System.err.println("catch 2");
+        } finally {
+            System.err.println("finally");
+        }
 
         // URIBuilder builder = new URIBuilder("file://\\\\brc-storage.notariado.org\\SIGNO70763\\ScriptingSQL\\?auth-username=sccmancert%5CSIGNO70763&auth-password=b4Q%24r3m.");
         // System.out.println(builder);
         // System.out.println(builder.getQueryParams());
 
-        List<String> items = new ArrayList<>();
-        final int countJobs = 6;
-        List<String> auxResult = List.of("1", "2", "3", "4", "5", "6");
-        List<String> signatureItems = List.of("1", "3");
-        items.addAll(
-            signatureItems.subList(
-                Math.min(5, 2),
-                Math.min(5 + 5, 2)
-            )
-        );
-        System.out.println(items);
+        // List<String> items = new ArrayList<>();
+        // final int countJobs = 6;
+        // List<String> auxResult = List.of("1", "2", "3", "4", "5", "6");
+        // List<String> signatureItems = List.of("1", "3");
+        // items.addAll(
+        //     signatureItems.subList(
+        //         Math.min(5, 2),
+        //         Math.min(5 + 5, 2)
+        //     )
+        // );
+        // System.out.println(items);
 
+        try {
+            // throw new SyncronizeBackupsException("Va");
+        } catch(Exception e) {
+            System.out.println("error " + e.getMessage());
+        }
+
+    }
+
+    static void dd()  {
+        throw new SyncronizeBackupsException("asdasd");
     }
 }
